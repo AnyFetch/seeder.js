@@ -35,7 +35,7 @@ describe("seeder api", function() {
     };
     async.waterfall([
       function startSeed(cb) {
-        seeder(seedObject, cb);
+        seeder(seedObject, mongoose, cb);
       },
       function querySeed(cb) {
         this.Cat.findOne(
@@ -59,7 +59,7 @@ describe("seeder api", function() {
     };
     async.waterfall([
       function startSeed(cb) {
-        seeder(seedObject, cb);
+        seeder(seedObject, mongoose, cb);
       },
       function querySeed(cb) {
         this.Cat.findOne(

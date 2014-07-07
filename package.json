@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Seed your MongoDB database easily",
   "main": "index.js",
-  "bin": "seeder.js",
+  "bin": "seeder",
   "scripts": {
     "test": "mocha test.js"
   },

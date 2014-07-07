@@ -1,14 +1,14 @@
 "use strict";
 
-var mongoose = require('mongoose');
 var async = require('async');
-var ObjectId = mongoose.Types.ObjectId;
 
 function capitalize(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-module.exports = function(seedObject, cb) {
+module.exports = function(seedObject, mongoose, cb) {
+  var ObjectId = mongoose.Types.ObjectId;
+
   async.each(Object.keys(seedObject), function(mongoModel, cb) {
     var documents = seedObject[mongoModel];
     mongoModel = capitalize(mongoModel);
