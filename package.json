@@ -1,0 +1,32 @@
+{
+  "name": "seeder",
+  "version": "0.1.0",
+  "description": "Seed your MongoDB database easily",
+  "main": "index.js",
+  "bin": "seeder.js",
+  "scripts": {
+    "test": "mocha test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/rricard/seeder.js.git"
+  },
+  "keywords": [
+    "mongodb",
+    "seed"
+  ],
+  "author": "Robin Ricard",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rricard/seeder.js/issues"
+  },
+  "homepage": "https://github.com/rricard/seeder.js",
+  "dependencies": {
+    "auto-load": "^1.1.0",
+    "commander": "^2.2.0",
+    "mongoose": "^3.8.12"
+  },
+  "devDependencies": {
+    "mocha": "^1.20.1"
+  }
+}
