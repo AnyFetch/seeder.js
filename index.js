@@ -4,8 +4,7 @@ var mongoose = require('mongoose');
 var async = require('async');
 var ObjectId = mongoose.Types.ObjectId;
 
-function capitalize(string)
-{
+function capitalize(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
