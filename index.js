@@ -20,6 +20,12 @@ module.exports = function seeder(seedObject, mongoose, logger, cb) {
     var Model = mongoose.model(mongoModelName);
 
     async.each(Object.keys(documents), function(_id, cb) {
+      var document = documents[_id];
+
+      if(document._id) {
+        _id = document._id;
+      }
+
       // Fake an upsert call, to keep the hooks
       Model.findById(_id, function(err, mongoDocument) {
         if(err) {
@@ -29,7 +35,6 @@ module.exports = function seeder(seedObject, mongoose, logger, cb) {
           mongoDocument = new Model({_id: new ObjectId(_id)});
         }
 
-        var document = documents[_id];
         for(var key in document) {
           mongoDocument[key] = document[key];
           mongoDocument.markModified(key);
