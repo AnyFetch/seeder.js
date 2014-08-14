@@ -1,6 +1,6 @@
 'use strict';
 
-var async = require("async");
+var async = require('async');
 
 function capitalize(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
