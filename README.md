@@ -26,6 +26,7 @@ Usage
     -V, --version       output the version number
     -m, --models <dir>  models directory
     -s, --seeds <dir>   seeds directory
+    -q, --quiet         quiet mode
     --mongo-url [url]   mongo database url (can be replaced with the MONGO_URL env variable)
 ```
 
