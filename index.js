@@ -6,7 +6,12 @@ function capitalize(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-module.exports = function seeder(seedObject, mongoose, cb) {
+module.exports = function seeder(seedObject, mongoose, logger, cb) {
+  if(!cb) {
+    cb = logger;
+    logger = console.log;
+  }
+
   var ObjectId = mongoose.Types.ObjectId;
 
   async.each(Object.keys(seedObject), function(mongoModel, cb) {
@@ -30,7 +35,7 @@ module.exports = function seeder(seedObject, mongoose, cb) {
           mongoDocument.markModified(key);
         }
 
-        console.log(mongoModelName, _id);
+        logger(mongoModelName, _id);
         mongoDocument.save(cb);
       });
     }, cb);
