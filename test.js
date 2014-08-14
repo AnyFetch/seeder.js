@@ -6,6 +6,8 @@ var async = require('async');
 var ObjectId = mongoose.Types.ObjectId;
 var seeder = require('./index.js');
 
+var logger = function() {};
+
 describe("seeder api", function() {
   before(function connectMongoose(done) {
     mongoose.connect('mongodb://localhost/test');
@@ -35,7 +37,7 @@ describe("seeder api", function() {
     };
     async.waterfall([
       function startSeed(cb) {
-        seeder(seedObject, mongoose, cb);
+        seeder(seedObject, mongoose, logger, cb);
       },
       function querySeed(cb) {
         this.Cat.findOne(
@@ -59,7 +61,7 @@ describe("seeder api", function() {
     };
     async.waterfall([
       function startSeed(cb) {
-        seeder(seedObject, mongoose, cb);
+        seeder(seedObject, mongoose, logger, cb);
       },
       function querySeed(cb) {
         this.Cat.findOne(
@@ -69,6 +71,32 @@ describe("seeder api", function() {
       }.bind(this),
       function assertSeed(cat, cb) {
         cat.should.have.property('name', 'Mary');
+        cb();
+      }
+    ], done);
+  });
+
+  it('should use _id field', function(done) {
+    var seedObject = {
+      cat: {
+        "cha-256": {
+          name: "Bobby",
+          _id: "5252ce4ce4cfcd16f55cfa3e"
+        }
+      }
+    };
+    async.waterfall([
+      function startSeed(cb) {
+        seeder(seedObject, mongoose, logger, cb);
+      },
+      function querySeed(cb) {
+        this.Cat.findOne(
+          { _id: new ObjectId("5252ce4ce4cfcd16f55cfa3e") },
+          cb
+        );
+      }.bind(this),
+      function assertSeed(cat, cb) {
+        cat.should.have.property('name', 'Bobby');
         cb();
       }
     ], done);
