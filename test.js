@@ -6,6 +6,8 @@ var async = require('async');
 var ObjectId = mongoose.Types.ObjectId;
 var seeder = require('./index.js');
 
+var logger = function() {};
+
 describe("seeder api", function() {
   before(function connectMongoose(done) {
     mongoose.connect('mongodb://localhost/test');
@@ -35,7 +37,7 @@ describe("seeder api", function() {
     };
     async.waterfall([
       function startSeed(cb) {
-        seeder(seedObject, mongoose, cb);
+        seeder(seedObject, mongoose, logger, cb);
       },
       function querySeed(cb) {
         this.Cat.findOne(
@@ -59,7 +61,7 @@ describe("seeder api", function() {
     };
     async.waterfall([
       function startSeed(cb) {
-        seeder(seedObject, mongoose, cb);
+        seeder(seedObject, mongoose, logger, cb);
       },
       function querySeed(cb) {
         this.Cat.findOne(
@@ -85,7 +87,7 @@ describe("seeder api", function() {
     };
     async.waterfall([
       function startSeed(cb) {
-        seeder(seedObject, mongoose, cb);
+        seeder(seedObject, mongoose, logger, cb);
       },
       function querySeed(cb) {
         this.Cat.findOne(
