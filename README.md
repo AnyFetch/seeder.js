@@ -35,13 +35,29 @@ Works with a seed directory like this one:
 ```
 seeds/
   cat/ # For the Cat model
-    5252ce4ce4cfcd16f55cfa3d.json # For the 5252ce4ce4cfcd16f55cfa3d document
+    keyboardCat.json
+    5252ce4ce4cfcd16f55cfa3d.json
   access-token/ # For the AccessToken model
     ...
   ...
 ```
 
-Each document needs a precise ID + a JSON containing the other attributes.
+`seeds/cat/keyboardCat.json`
+```json
+{
+  "_id": "5252ce4ce4cfcd16f55cfade",
+  "name": "keyboardCat",
+}
+```
+
+If the `_id` key is missing, it will try to use the file name instead:
+
+`seeds/cat/5252ce4ce4cfcd16f55cfa3d.json`
+```json
+{
+  "name": "Bobby",
+}
+```
 
 ### API
 
@@ -53,6 +69,10 @@ var seedObjects = {
   cat: {
     "5252ce4ce4cfcd16f55cfa3d": {
       name: "Bobby"
+    },
+    "keyboardCat": {
+      _id: "5252ce4ce4cfcd16f55cfade",
+      name: "keyboardCat"
     }
   }
 };
